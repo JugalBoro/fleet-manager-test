@@ -1,0 +1,132 @@
+<ng-container>
+  <div
+    style="
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: stretch;
+      height: 100%;
+      gap: 20px;
+    "
+  >
+    <p-card class="main-card grid-card grow">
+      <ng-template pTemplate="header" class="card-header">
+        <h3 class="font-medium text-lg">Assets</h3>
+        <p-button
+          label="Create asset"
+          icon="pi pi-plus"
+          styleClass="p-button-outlined p-button-text p-button-sm"
+          (click)="handleCreateAsset()"
+        ></p-button
+      ></ng-template>
+      <ng-template pTemplate="body">
+        <infus-grid
+          [rowData]="rowData | async"
+          [columnDefs]="columnDefs"
+          (notifyParent)="getPanelData($event)"
+        ></infus-grid>
+      </ng-template>
+    </p-card>
+    <p-card
+      *ngIf="panelData"
+      class="side-card panel-card relative h-full [&>.p-card]:h-full w-[430px]"
+    >
+      <ng-template pTemplate="header" class="card-header">
+        <div class="flex flex-row justify-between w-full">
+          <h3 class="font-medium text-lg">
+            {{ panelData?.["base-objects-v0.1-machine-identification-alias"]?.value || 'Alias is missing'}}
+          </h3>
+          <p-button
+            [routerLink]="['/dashboard', 'example']"
+            label="Analyze"
+            styleClass="p-button-link p-button-sm"
+          />
+        </div>
+      </ng-template>
+      <ng-template pTemplate="body">
+        <p-tabView class="[&>.p-tabview]:text-sm">
+          <p-tabPanel header="General">
+            <div class="border border-gray-200 p-4 rounded">
+              <ng-container *ngFor="let item of $any(panelData | keyvalue)">
+                <div
+                  *ngIf="
+                    item.key !== '__v' &&
+                    item.key !== '_id' &&
+                    item.key !== 'manageGridAssetActions' &&
+                    item.key !== 'templateId'
+                  "
+                  class="flex flex-row justify-between pb-2 last:pb-0"
+                  style="font-size: 14px"
+                >
+                  <div class="capitalize">
+                    {{ item.value.name }}
+                  </div>
+                  <div class="text-right font-medium">
+                    {{
+                      isObject(item.value.value)
+                        ? item.value.value?.name
+                        : item.value.value
+                    }}
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </p-tabPanel>
+          <p-tabPanel header="Parameter">
+            <p>Parameter here</p>
+          </p-tabPanel>
+          <p-tabPanel header="SmartBox">
+            <p>SmartBox here</p>
+          </p-tabPanel>
+          <p-tabPanel header="Relations">
+            <p>Relations here</p>
+          </p-tabPanel>
+        </p-tabView>
+      </ng-template>
+    </p-card>
+  </div>
+</ng-container>
+
+<p-sidebar
+  appendTo="body"
+  [(visible)]="sidebarVisible"
+  position="right"
+  styleClass="w-50rem"
+  (onHide)="sidebarStore.store = { isOpen: false, id: 'SELECT_ICS_TEMPLATES' }"
+>
+  <ng-template pTemplate="header" class="card-header">
+    <h3 class="font-medium text-lg">Select Template</h3></ng-template
+  >
+  <ng-container
+    *ngIf="
+      icsTemplateDescription$ | async as icsTemplateDescription;
+      else loading
+    "
+  >
+    <infus-add-asset [icsTemplates]="icsTemplateDescription" />
+  </ng-container>
+</p-sidebar>
+
+<p-sidebar
+  appendTo="body"
+  [(visible)]="sidebarManageAssetsVisible"
+  position="right"
+  styleClass="w-50rem"
+  (onHide)="sidebarStore.store = { isOpen: false, id: 'MANAGE_ASSETS' }"
+>
+  <ng-template pTemplate="header" class="card-header">
+    <h3 class="font-medium text-lg">Add Asset</h3></ng-template
+  >
+  <ng-container
+    *ngIf="
+      icsTemplate$ || currentIcsTemplate$ | async as icsTemplate;
+      else loading
+    "
+  >
+    <infus-manage-asset
+      [icsTemplate]="icsTemplate"
+      [selectedIcsTemplateDescription]="selectedIcsTemplateDescription"
+    />
+  </ng-container>
+</p-sidebar>
+
+<ng-template #loading>loading...</ng-template>

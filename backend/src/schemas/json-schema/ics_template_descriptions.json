@@ -1,0 +1,42 @@
+[
+  {
+    "id": "e9d899831b255bebebcf8c32e9dc9aff0d545b4901768d3475485c8e14a48f60",
+    "icsId": "industry-fusion/templates/cutter/v0.1/cutter",
+    "name": "Cutter",
+    "description": "Cutter template for IFF",
+    "group": "Machine",
+    "metadata": {
+      "type": "cutter"
+    }
+  },
+  {
+    "id": "57de5754975bd6a4a06f5af9404ac059f4df9406380b34fb0a1cc962e28cfb0f",
+    "icsId": "industry-fusion/templates/filter/v0.1/filter",
+    "name": "Filter",
+    "description": "Filter template for IFF",
+    "group": "Filter",
+    "metadata": {
+      "type": "filter"
+    }
+  },
+  {
+    "id": "59d331028ebc412e8638f8e55fdf4ce6da62f01078cf50b94d585431f9814b93",
+    "icsId": "industry-fusion/templates/filter-catridge/v0.1/filter-catridge",
+    "name": "Filter catridge",
+    "description": "Filter catridge template for IFF",
+    "group": "Filter",
+    "metadata": {
+      "type": "filter"
+    }
+  },
+  {
+    "id": "6f8e28d5986ad9846e8097c5d9b089d5b46cfca932a56c083c01d7868adb3a74",
+    "icsId": "industry-fusion/templates/workpiece/v0.1/workpiece",
+    "name": "Workpiece",
+    "description": "Workpiece template for IFF",
+    "group": "Workpiece",
+    "metadata": {
+      "type": "workpiece"
+    }
+  }
+]

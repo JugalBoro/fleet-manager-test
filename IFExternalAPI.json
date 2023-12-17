@@ -1,0 +1,108 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Industry Fusion API",
+    "version": "0.1"
+  },
+  "servers": [{ "url": "https://whateverURL.com/api/v1" }],
+  "paths": {
+    "/machine": {
+      "get": {
+        "summary": "Get all machines",
+        "description": "Get a list of all machines that are currently shared over api",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Machine"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Machine": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique identifier of the machine in the 4Fusion Platform",
+            "type": "integer",
+            "format": "int64"
+          },
+          "icis_id": {
+            "description": "The global unique identifier",
+            "type": "string"
+          },
+          "name": {
+            "description": "The name of the machine",
+            "type": "string"
+          },
+          "if_template": {
+            "description": "The template on which the machine is based on",
+            "type": "string"
+          },
+          "if_template_version": {
+            "description": "The template on which the machine is based on",
+            "type": "string"
+          },
+          "kpis": {
+            "description": "The KPIs of the machine",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Kpi"
+            }
+          }
+        }
+      },
+      "Kpi": {
+        "type": "object",
+        "properties": {
+          "month": {
+            "description": "The month of the KPI, getting the last 2 months",
+            "type": "string",
+            "format": "date"
+          },
+          "running": {
+            "description": "The time in seconds the machine was running",
+            "type": "integer",
+            "format": "int64"
+          },
+          "idle": {
+            "description": "The time in seconds the machine was idle",
+            "type": "integer",
+            "format": "int64"
+          },
+          "error": {
+            "description": "The time in seconds the machine has been in error state",
+            "type": "integer",
+            "format": "int64"
+          },
+          "offline": {
+            "description": "The time in seconds the machine was offline",
+            "type": "integer",
+            "format": "int64"
+          },
+          "parts_count_good": {
+            "description": "The count of parts that was produced in good quality",
+            "type": "integer",
+            "format": "int64"
+          },
+          "parts_count_scrap": {
+            "description": "The count of parts that was produced in bad quality",
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      }
+    }
+  }
+}

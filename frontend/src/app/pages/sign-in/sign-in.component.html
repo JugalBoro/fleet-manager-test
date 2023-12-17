@@ -1,0 +1,72 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+  <p-panel header="Sign in">
+    <div class="flex flex-col gap-4" style="margin: 10px 0px">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">Username</div>
+        <div class="ui-grid-col-6">
+          <input
+            pInputText
+            type="text"
+            placeholder="Username"
+            formControlName="login"
+            class="form-control w-full"
+            name="login"
+          />
+        </div>
+        <div class="ui-grid-col-4">
+          <div
+            [hidden]="
+              loginForm.controls['login'].valid ||
+              !loginForm.controls['login'].dirty
+            "
+            class="alert alert-danger text-red-500"
+          >
+            Username is required
+          </div>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">Password</div>
+        <div class="ui-grid-col-6">
+          <input
+            pInputText
+            type="password"
+            placeholder="Password"
+            formControlName="password"
+            class="form-control w-full"
+            name="password"
+          />
+        </div>
+        <div class="ui-grid-col-4">
+          <div
+            [hidden]="
+              loginForm.controls['password'].valid ||
+              !loginForm.controls['password'].dirty
+            "
+            class="alert alert-danger text-red-500"
+          >
+            Password is required
+          </div>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-6">
+          <button
+            pButton
+            type="submit"
+            class="w-full"
+            label="Sign in"
+            [disabled]="!loginForm.valid"
+          ></button>
+        </div>
+        <div class="ui-grid-col-4"></div>
+      </div>
+    </div>
+    <div *ngIf="error">
+      <div class="alert alert-danger text-red-500">
+        Wrong credentials, please try again
+      </div>
+    </div>
+  </p-panel>
+</form>

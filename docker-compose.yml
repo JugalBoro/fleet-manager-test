@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  fleet-manager-backend:
+    image: ${DOCKER_PREFIX:-ibn40}/fleet-manager-backend:${DOCKER_TAG:-latest}
+    build:
+      context: ./backend
+    ports:
+    - "3000:3000"
+  fleet-manager-frontend:
+    image: ${DOCKER_PREFIX:-ibn40}/fleet-manager-frontend:${DOCKER_TAG:-latest}
+    build:
+      context: ./frontend
+    ports:
+    - "80:80"

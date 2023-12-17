@@ -1,0 +1,50 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  style="display: flex; flex-flow: column nowrap; gap: 1rem"
+>
+  <p-accordion class="w-full" [activeIndex]="0">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <div class="flex align-items-center">
+          <i class="pi pi-pencil mr-2"></i>
+          <span class="vertical-align-middle">General</span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <infus-recursive-form-group
+          type="identification"
+          [form]="form"
+          [selectedIcsTemplateDescription]="selectedIcsTemplateDescription"
+          [icsTemplate]="icsTemplate"
+        ></infus-recursive-form-group>
+      </ng-template>
+    </p-accordionTab>
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <div class="flex align-items-center">
+          <i class="pi pi-pencil mr-2"></i>
+          <span class="vertical-align-middle">Parameters</span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <infus-recursive-form-group
+          type="parameters"
+          [form]="form"
+          [selectedIcsTemplateDescription]="selectedIcsTemplateDescription"
+          [icsTemplate]="icsTemplate"
+        ></infus-recursive-form-group>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+
+  <p-button
+    type="submit"
+    [loading]="isLoading"
+    label="Save"
+    [disabled]="form.invalid"
+    icon="pi pi-save"
+    styleClass="p-button-sm"
+    class="action"
+  />
+</form>

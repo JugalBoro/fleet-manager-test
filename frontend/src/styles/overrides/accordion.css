@@ -1,0 +1,19 @@
+.p-accordion .p-accordion-tab-active .p-accordion-content,
+.p-accordion .p-accordion-tab-active .p-accordion-header-link {
+  border-color: var(--blue-500) !important;
+  border-width: 2px !important;
+}
+
+.p-accordion .p-accordion-tab-active .p-accordion-header-link {
+  color: var(--blue-700) !important;
+  background-color: var(--blue-50) !important;
+}
+
+.p-accordion .p-accordion-tab-active .p-accordion-header-link:hover {
+  background-color: var(--blue-100) !important;
+}
+
+.p-accordion .p-accordion-toggle-icon {
+  position: absolute;
+  right: 1rem;
+}

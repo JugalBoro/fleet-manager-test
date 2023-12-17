@@ -1,0 +1,77 @@
+/* GLOBAL OVERRIDES */
+.main-card .p-card .p-card-header,
+.side-card .p-card .p-card-header {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 12px 24px;
+  border-bottom: 2px solid var(--surface-d);
+  min-height: 70px;
+}
+.main-card .p-card .p-card-header > *,
+.side-card .p-card .p-card-header > * {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.main-card .p-card .p-card-body,
+.side-card .p-card .p-card-body,
+.main-card .p-card .p-card-content,
+.side-card .p-card .p-card-content {
+  padding: 0;
+  width: 100%;
+}
+
+.tab-card > .p-card > .p-card-body,
+.tab-card > .p-card > .p-card-body > .p-card-content {
+  padding: 0;
+}
+
+.template-card .p-card .p-card-body {
+  padding: 0.5rem 1rem 1rem;
+}
+.template-card .p-card .p-card-content {
+  padding: 0;
+}
+.template-card .p-card .p-card-header {
+  padding: 1rem 1rem 0;
+}
+.template-card .p-card {
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: minmax(min-content, max-content) auto;
+}
+
+.template-card .p-card .p-card-content {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.template-card .p-card-body {
+  height: 100%;
+}
+
+.p-card {
+  border: 1px solid var(--surface-d) !important;
+  box-shadow: none !important;
+}
+
+.main-card .p-inputtext,
+.main-card .p-multiselect .p-multiselect-label {
+  padding-top: 0.175rem !important;
+  padding-bottom: 0.175rem !important;
+}
+
+.main-card .p-multiselect.p-multiselect-chip .p-multiselect-token {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.main-card .p-button.p-button-icon-only {
+  padding: 0 !important;
+}

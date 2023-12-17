@@ -1,0 +1,50 @@
+<header data-grid="header">
+  <div class="flex flex-row justify-between">
+    <span
+      ><img
+        src="assets/industryfusion-logo.png"
+        title="Logo"
+        alt="Das Industry Fusion Logo"
+        style="max-height: 30px"
+    /></span>
+    <div class="relative">
+      <p-button
+        icon="pi pi-bell"
+        styleClass="p-button-rounded p-button-secondary p-button-sm"
+        (onClick)="
+          sidebarStore.store = { isOpen: true, id: 'MANAGE_NOTIFICATIONS' }
+        "
+      ></p-button>
+      <p-badge
+        [value]="nrNotifications.toString()"
+        class="absolute top-[-0.75rem] right-[-0.5rem]"
+        styleClass="p-badge-sm"
+      />
+    </div>
+  </div>
+</header>
+<main data-grid="body">
+  <nav>
+    <infus-mainmenu [assetsAmount]="assetsAmount$ | async" />
+  </nav>
+  <router-outlet />
+</main>
+<footer data-grid="footer" class="text-xs">
+  Copyright & Design by IB Systems GmbH and IndustryFusion Foundation, all
+  rights reserved!
+</footer>
+<p-sidebar
+  appendTo="body"
+  [(visible)]="sidebarVisible"
+  position="right"
+  styleClass="w-30rem"
+  class="absolute"
+  (onHide)="sidebarStore.store = { isOpen: false, id: 'MANAGE_NOTIFICATIONS' }"
+>
+  <ng-template pTemplate="header" class="card-header">
+    <h3 class="font-medium text-lg">Notifications</h3>
+  </ng-template>
+  <ng-container>
+    <infus-notification [notifications]="notifications$ | async" />
+  </ng-container>
+</p-sidebar>

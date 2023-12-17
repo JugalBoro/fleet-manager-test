@@ -1,0 +1,62 @@
+<div>
+  <h4 class="font-medium" style="margin-bottom: 0.25rem">Templates</h4>
+  <p style="margin-bottom: 2rem">
+    Please select a template suitable for your machine
+  </p>
+  <p-card class="tab-card">
+    <p-tabView>
+      <p-tabPanel>
+        <ng-template pTemplate="header">
+          <div class="flex flex-row gap-2 items-center">
+            <span>All</span>
+            <p-badge
+              [value]="icsTemplates?.length?.toString() || '0'"
+            ></p-badge>
+          </div>
+        </ng-template>
+        <div class="card-item-row">
+          <p-card class="template-card" *ngFor="let template of icsTemplates">
+            <ng-template pTemplate="header">
+              <h4 class="font-medium">{{ template.name }}</h4>
+            </ng-template>
+            <p style="margin-bottom: 1rem">
+              {{ template.description }}
+            </p>
+            <button
+              pButton
+              pRipple
+              label="Select"
+              class="p-button-text p-button-sm"
+              (click)="handleClick(template)"
+            ></button>
+          </p-card>
+        </div>
+      </p-tabPanel>
+      <p-tabPanel *ngFor="let group of icsTemplateGroups">
+        <ng-template pTemplate="header">
+          <span>{{ group }}</span>
+        </ng-template>
+        <div class="card-item-row">
+          <p-card
+            class="template-card"
+            *ngFor="let template of getIcsTemplatesFilteredByGroup(group)"
+          >
+            <ng-template pTemplate="header">
+              <h4 class="font-medium">{{ template.name }}</h4>
+            </ng-template>
+            <p style="margin-bottom: 1rem">
+              {{ template.description }}
+            </p>
+            <button
+              pButton
+              pRipple
+              label="Select"
+              class="p-button-text p-button-sm"
+              (click)="handleClick(template)"
+            ></button>
+          </p-card>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </p-card>
+</div>

@@ -1,0 +1,21 @@
+.w-30rem {
+  width: 90% !important;
+  max-width: 30rem !important;
+}
+.w-40rem {
+  width: 90% !important;
+  max-width: 40rem !important;
+}
+.w-50rem {
+  width: 90% !important;
+  max-width: 50rem !important;
+}
+
+.p-sidebar .p-sidebar-header + .p-sidebar-content {
+  padding-top: 1rem !important;
+  margin-top: -1rem;
+}
+
+.p-sidebar .p-sidebar-footer {
+  display: none;
+}

@@ -1,0 +1,32 @@
+<!-- Define the recursive template. -->
+<ng-template #nodeTemplateRef let-node>
+  <infus-fields
+    *ngIf="!node.hidden && node.type"
+    [field]="node"
+    [icsTemplateDescription]="selectedIcsTemplateDescription"
+    [parentForm]="form"
+  ></infus-fields>
+
+  <h3 class="font-medium" *ngIf="node.title">{{ node.title }}</h3>
+
+  <div *ngIf="node.properties?.length" class="node__children">
+    <!-- Invoke the recursive template. -->
+    <ng-template
+      ngFor
+      [ngForOf]="node.properties"
+      [ngForTemplate]="nodeTemplateRef"
+    >
+      <!--
+              NOTE: The "$implicit" property of the ngFor context is what will
+              be made available to the template ref's implicit let-node binding.
+            -->
+    </ng-template>
+  </div>
+</ng-template>
+<ng-template
+  [ngTemplateOutlet]="nodeTemplateRef"
+  [ngTemplateOutletContext]="{
+          $implicit: type === 'identification' ? icsTemplate?.metadata : icsTemplate?.parameters,
+        }"
+>
+</ng-template>

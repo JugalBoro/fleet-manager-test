@@ -1,0 +1,48 @@
+.dashboard-wrapper {
+  height: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 24px;
+}
+
+.dashboard-wrapper > .dashboard-availability {
+  width: calc(25% - 16px);
+  height: 40%;
+}
+
+.dashboard-wrapper > .dashboard-efficiency {
+  width: calc(50% - 16px);
+  height: 40%;
+}
+
+.dashboard-wrapper > .dashboard-coming-soon {
+  width: calc(25% - 16px);
+  height: 40%;
+}
+
+.dashboard-wrapper > .dashboard-table {
+  width: 100%;
+  height: calc(60% - 24px);
+}
+
+::ng-deep .dashboard-wrapper .p-card.p-component {
+  height: 100%;
+}
+
+::ng-deep .p-card-body,
+::ng-deep .p-card-content {
+  height: 100%;
+}
+
+::ng-deep .dashboard-table .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  padding: 14px;
+}
+
+::ng-deep .dashboard-table .p-tabview-panels {
+  padding: 0;
+}
+
+::ng-deep .dashboard-table .p-button {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}

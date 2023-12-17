@@ -1,0 +1,18 @@
+::ng-deep .infus-recursive-form-group .node__children .node__children {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+::ng-deep .infus-recursive-form-group > h3 {
+  display: none;
+}
+
+.node__children h3 {
+  margin-bottom: 2rem;
+}
+
+.node__children:last-child {
+  margin: 0 !important;
+}

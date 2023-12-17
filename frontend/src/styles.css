@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+@import "ag-grid-community/styles/ag-grid.css";
+@import "ag-grid-community/styles/ag-theme-material.min.css";
+
+@import "./styles/global.css";
+@import "./styles/layout.css";
+
+/* GLOBAL OVERRIDES */
+@import "./styles/overrides/ag-grid.css";
+@import "./styles/overrides/accordion.css";
+@import "./styles/overrides/button.css";
+@import "./styles/overrides/badge.css";
+@import "./styles/overrides/card.css";
+@import "./styles/overrides/sidebar.css";
+@import "./styles/overrides/tabpanel.css";
+@import "./styles/overrides/multiselect.css";
+@import "./styles/overrides/input.css";
+
+/* TAILWIND */
+@import "./styles/tailwind.css";
+@import "./styles/tailwind-dist.css";

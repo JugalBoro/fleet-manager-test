@@ -1,0 +1,17 @@
+.p-tabview-nav .p-badge {
+  min-width: 1rem;
+  height: 1rem;
+  line-height: 1rem;
+}
+
+.p-tabview-nav p-badge {
+  display: flex;
+}
+
+.p-badge.p-badge-sm {
+  font-size: 0.65rem;
+  font-weight: 700;
+  min-width: 1rem;
+  height: 1rem;
+  line-height: 1rem;
+}

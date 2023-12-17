@@ -1,0 +1,15 @@
+<ag-grid-angular
+  [pagination]="true"
+  [paginationAutoPageSize]="true"
+  class="ag-theme-material"
+  [rowData]="rowData"
+  [columnDefs]="columnDefs"
+  [defaultColDef]="defaultColDef"
+  [rowHeight]="54"
+  [suppressCellFocus]="true"
+  [rowSelection]="'single'"
+  [multiSortKey]="'ctrl'"
+  (rowClicked)="onRowClicked($event)"
+  (cellClicked)="onCellClicked($event)"
+>
+</ag-grid-angular>

@@ -1,0 +1,8 @@
+<p-menu #menu [model]="items" [popup]="true" appendTo="body"></p-menu>
+<button
+  pButton
+  pRipple
+  icon="pi pi-ellipsis-v"
+  class="p-button-rounded p-button-text p-button-sm"
+  (click)="menu.toggle($event)"
+></button>

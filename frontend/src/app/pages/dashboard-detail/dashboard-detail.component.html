@@ -1,0 +1,184 @@
+<ng-container>
+  <div class="dashboard-wrapper">
+    <p-card class="main-card dashboard-coming-soon">
+      <div>
+        <div class="flex flex-row gap-4 items-center min-h-[63px] p-4">
+          <infus-navigate-back />
+          <span class="font-medium">{{ assetAlias }}</span>
+        </div>
+        <div class="flex flex-row justify-center">
+          <div class="border rounded-md p-4 mx-4 inline-block relative">
+            <img
+              [src]="machineIcon"
+              title="Logo"
+              alt="Das Industry Fusion Logo"
+              class="w-52"
+            />
+          </div>
+        </div>
+      </div>
+    </p-card>
+    <p-card class="main-card dashboard-availability">
+      <div class="flex flex-col justify-between h-full">
+        <div
+          class="flex flex-row justify-between items-center p-4 min-h-[63px]"
+        >
+          <span class="font-medium">General</span>
+        </div>
+        <div class="border rounded-md flex-grow p-4 mx-4 mb-4 relative">
+          <div
+            class="flex flex-row justify-between pb-2 last:pb-0"
+            style="font-size: 14px"
+          >
+            <div class="capitalize">Activity</div>
+            <div class="text-right font-medium">Running</div>
+          </div>
+          <div
+            class="flex flex-row justify-between pb-2 last:pb-0"
+            style="font-size: 14px"
+          >
+            <div class="capitalize">Baujahr</div>
+            <div class="text-right font-medium">
+              {{
+                getAssetVars(
+                  "base-objects-v0.1-machine-identification-manufacturing-year"
+                )
+              }}
+            </div>
+          </div>
+          <div
+            class="flex flex-row justify-between pb-2 last:pb-0"
+            style="font-size: 14px"
+          >
+            <div class="capitalize">Herstellerproduktbez.</div>
+            <div class="text-right font-medium">
+              {{
+                getAssetVars(
+                  "base-objects-v0.1-ifric-identification-asset-manufacturer-name"
+                )
+              }}
+            </div>
+          </div>
+          <div
+            class="flex flex-row justify-between pb-2 last:pb-0"
+            style="font-size: 14px"
+          >
+            <div class="capitalize">E-Class</div>
+            <div class="text-right font-medium">
+              {{
+                getAssetVars(
+                  "base-objects-v0.1-ifric-identification-asset-category"
+                )
+              }}
+            </div>
+          </div>
+          <div
+            class="flex flex-row justify-between pb-2 last:pb-0"
+            style="font-size: 14px"
+          >
+            <div class="capitalize">Seriennummer</div>
+            <div class="text-right font-medium">
+              {{
+                getAssetVars(
+                  "base-objects-v0.1-machine-identification-asset-serial-number"
+                )
+              }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-card>
+    <p-card class="main-card dashboard-efficiency">
+      <div class="flex flex-col justify-between h-full">
+        <div class="flex flex-row justify-between items-center p-4">
+          <span class="font-medium">Availability</span>
+        </div>
+        <div class="border rounded-md flex-grow mx-4 relative">
+          <!-- <div
+            class="w-4rem h-4rem absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            *ngIf="!loading.metrics; else loadingMetrics"
+          > -->
+          <infus-chart-detail
+            [chartOption]="groupedStateChartOption"
+          ></infus-chart-detail>
+          <!-- </div> -->
+        </div>
+        <div class="flex flex-row justify-between items-center p-4">
+          <span>Last 5 days</span>
+          <!-- <p-dropdown
+            [options]="timerangesAvailabilityChart"
+            [(ngModel)]="selectedTimerangesAvailabilityChart"
+            optionLabel="name"
+          ></p-dropdown> -->
+          <!-- <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline"
+            >View details</a
+          > -->
+        </div>
+      </div>
+    </p-card>
+    <p-card class="main-card dashboard-table">
+      <div class="flex flex-col justify-between h-full">
+        <div
+          class="flex flex-row justify-between items-center min-h-[63px] p-4"
+        >
+          <span class="font-medium">Process</span>
+          <p-selectButton
+            [options]="stateOptions"
+            [(ngModel)]="value"
+            (ngModelChange)="onChange($event)"
+            optionLabel="label"
+            optionValue="value"
+          ></p-selectButton>
+        </div>
+        <div class="border rounded-md flex-grow px-4 mx-4 relative">
+          <!-- <div
+            class="w-4rem h-4rem absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            *ngIf="!loading.metrics; else loadingMetrics"
+          > -->
+          <infus-chart-detail
+            [chartOption]="chartOption"
+            id="myEcharts"
+          ></infus-chart-detail>
+          <!-- </div> -->
+        </div>
+        <div class="flex flex-row items-center p-4">
+          <p-button
+            label="1 hours"
+            styleClass="p-button-rounded p-button-secondary p-button-sm m-4"
+            (onClick)="setMetricstime(1)"
+          ></p-button
+          >&nbsp;
+          <p-button
+            label="5 hours"
+            styleClass="p-button-rounded p-button-secondary p-button-sm m-4"
+            (onClick)="setMetricstime(5)"
+          ></p-button>
+          &nbsp;
+          <p-button
+            label="24 hours"
+            styleClass="p-button-rounded p-button-secondary p-button-sm m-4"
+            (onClick)="setMetricstime(24)"
+          ></p-button>
+          &nbsp;
+          <!-- <p-dropdown
+            [options]="timerangesProcessChart"
+            [(ngModel)]="selectedTimerangesProcessChart"
+            optionLabel="name"
+          ></p-dropdown> -->
+          <!-- <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline"
+            >View details</a
+          > -->
+        </div>
+      </div>
+    </p-card>
+  </div>
+  <ng-template #loadingMetrics>
+    <p-progressSpinner
+      styleClass="w-4rem h-4rem absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+      strokeWidth="8"
+      fill="white"
+      animationDuration=".5s"
+    ></p-progressSpinner>
+  </ng-template>
+  <ng-template #emptyStateChart> No data available </ng-template>
+</ng-container>

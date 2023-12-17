@@ -1,0 +1,19 @@
+.notification.notification--empty {
+  background: var(--surface-50);
+}
+
+.notification {
+  padding: 20px;
+  margin-left: -20px;
+  width: calc(100% + 40px);
+  border-bottom: 1px solid #ced4da;
+}
+
+.notification:first-child {
+  border-top: 1px solid #ced4da;
+}
+
+::ng-deep .notification .p-avatar-circle {
+  border-width: 1px;
+  border-style: solid;
+}

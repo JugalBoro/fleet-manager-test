@@ -1,0 +1,11 @@
+.full-height {
+  display: block;
+  height: 100%;
+}
+
+.p-card-content,
+ag-grid-angular,
+.ag-root-wrapper,
+.ag-root-wrapper-body {
+  height: 100% !important;
+}

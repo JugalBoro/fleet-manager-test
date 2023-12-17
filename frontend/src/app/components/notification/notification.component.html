@@ -1,0 +1,72 @@
+<!-- Notifications -->
+<ng-container *ngIf="notifications">
+  <div
+    class="notification flex flex-row gap-3 items-start"
+    *ngFor="let notification of notifications"
+    [ngStyle]="
+      notification.status === 'unread' ? { 'background-color': '#EFF6FF' } : {}
+    "
+  >
+    <p-avatar
+      [icon]="'pi pi-' + getIcon(notification.type)"
+      shape="circle"
+      [style]="{
+        'background-color': getBackgroundColor(notification.type),
+        color: getTextColor(notification.type),
+        'border-color': getTextColor(notification.type)
+      }"
+    ></p-avatar>
+    <div class="flex flex-col text-sm gap-0.5">
+      <span
+        class="font-semibold"
+        [ngStyle]="notification.status === 'unread' ? { color: '#3b82f6' } : {}"
+        >{{
+          notification.type === "ok"
+            ? notification.title
+            : notification.machine?.alias +
+              " | " +
+              notification.machine?.assetName
+        }}</span
+      >
+      <span>{{ notification.text }}</span>
+      <div
+        class="flex flex-row flex-nowrap gap-0.5"
+        style="color: var(--text-color-secondary)"
+      >
+        <span class="font-medium"
+          >{{ notification.timestamp | date : "shortTime" }},</span
+        >
+        <span>{{ notification.timestamp | date : "mediumDate" }}</span>
+      </div>
+      <!-- <div class="flex flex-row gap-1.5 mt-2.5">
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Some action"
+          class="p-button-sm"
+        ></button>
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Secondary action"
+          class="p-button-outlined p-button-sm"
+        ></button>
+      </div> -->
+    </div>
+  </div>
+</ng-container>
+
+<!-- Empty State -->
+<ng-container *ngIf="!notifications">
+  <div
+    class="notification notification--empty flex flex-row gap-3 items-center"
+  >
+    <p-avatar icon="pi pi-inbox" shape="circle"></p-avatar>
+    <div class="flex flex-col text-sm">
+      <span class="font-semibold">No notifications</span>
+      <span>Come back later.</span>
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,124 @@
+<div
+  [formGroup]="parentForm"
+  style="display: flex; flex-flow: column nowrap; justify-content: center"
+>
+  <span class="relative" *ngIf="field?.contentMediaType">
+    <span class="custom-float-label">{{
+      field?.name + " (jpg, jpeg, png, pdf)"
+    }}</span>
+    <p-fileUpload
+      (uploadHandler)="onUpload($event, field?.id)"
+      id="{{ field?.id }}"
+      [customUpload]="true"
+      [auto]="true"
+      [multiple]="true"
+      [maxFileSize]="10485760"
+      chooseLabel="Choose file"
+      chooseStyleClass="p-ripple p-element p-button-outlined p-button-text p-button-sm p-button p-component"
+      [ngClass]="{
+        'border': initialFiles.length,
+      }"
+    >
+      <ng-template pTemplate="file"></ng-template>
+      <ng-template pTemplate="content">
+        <ul class="list">
+          <li
+            *ngFor="let file of initialFiles"
+            class="flex flex-row items-center justify-between gap-4"
+          >
+            <ng-container>
+              <img
+                *ngIf="
+                  file?.type?.includes('image') ||
+                  file?.mimetype?.includes('image')
+                "
+                [src]="
+                  file?.objectURL?.changingThisBreaksApplicationSecurity ||
+                  file?.path
+                "
+                width="50"
+              />
+              <i
+                *ngIf="file?.type?.includes('pdf')"
+                class="pi pi-file-pdf p-text-center"
+                style="font-size: 1.25rem"
+              ></i>
+            </ng-container>
+            <span class="font-medium">{{
+              file?.name || file?.originalname
+            }}</span>
+            <span>{{ file.size / 1000 | number : "1.0-0" }} KB</span>
+            <p-button
+              pRipple
+              icon="pi pi-times"
+              styleClass="p-button-rounded p-button-text p-button-sm"
+              (click)="onRemoveFile(file)"
+            ></p-button>
+          </li>
+        </ul>
+      </ng-template>
+    </p-fileUpload>
+  </span>
+
+  <span *ngIf="field?.enum" class="p-float-label">
+    <p-dropdown
+      inputId="{{ field?.id }}"
+      [options]="field?.enum"
+      formControlName="{{ field?.id }}"
+      [placeholder]="'Select ' + (field?.name || field?.key) | titlecase"
+      optionLabel="name"
+      class="w-full [&>div]:w-full"
+    ></p-dropdown>
+    <label for="{{ field?.id }}">{{ field?.name }}</label>
+  </span>
+
+  <span *ngIf="!field?.enum && !field?.contentMediaType" class="p-float-label">
+    <input
+      pInputText
+      [readOnly]="!!field?.readonly || !!field?.value?.readonly"
+      [id]="field?.id"
+      [type]="field?.type || field?.value?.type"
+      formControlName="{{ field?.id }}"
+      [placeholder]="
+        field?.key === 'templateCategory'
+          ? icsTemplateDescription?.name
+          : field?.placeholder
+      "
+      style="width: 100%"
+    />
+    <label *ngIf="field?.key" [htmlFor]="field?.key"
+      ><span>{{
+        field?.key === "templateCategory"
+          ? icsTemplateDescription?.name
+          : (field?.key | titlecase)
+      }}</span>
+      <span
+        *ngIf="field?.value?.required"
+        style="opacity: 0.5; text-transform: uppercase; margin-left: 0.0125rem"
+      >
+        *
+      </span></label
+    >
+    <label *ngIf="field?.name" [htmlFor]="field?.name"
+      >{{ field?.name | titlecase }}
+      <span *ngIf="field?.unit">({{ field?.unit }})</span></label
+    >
+  </span>
+  <div
+    *ngIf="
+      parentForm.get(field?.name || field?.key)?.invalid &&
+      parentForm.get(field?.name || field?.key)?.touched
+    "
+  >
+    <small
+      *ngIf="parentForm.get(field?.name || field?.key)?.errors?.['required']"
+    >
+      {{ field?.name || field?.key | titlecase }} is required
+    </small>
+    <small
+      *ngIf="parentForm.get(field?.name || field?.key)?.errors?.['pattern']"
+    >
+      {{ field?.name || field?.key | titlecase }} must be a valid number
+    </small>
+  </div>
+</div>

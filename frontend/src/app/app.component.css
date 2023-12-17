@@ -1,0 +1,25 @@
+main {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+::ng-deep main > .infus-page {
+  flex-grow: 1;
+  margin: 20px;
+}
+/* Remove this, after PrimeNG Diamond Template has been integrated */
+header,
+footer {
+  background-color: white;
+  padding: 10px 24px;
+  margin: 0;
+}
+
+footer {
+  border-top: 1px solid var(--surface-d);
+}
+
+header {
+  border-bottom: 1px solid var(--surface-d);
+}

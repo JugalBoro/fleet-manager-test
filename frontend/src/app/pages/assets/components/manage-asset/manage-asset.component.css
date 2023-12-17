@@ -1,0 +1,16 @@
+form {
+  padding-bottom: 68px;
+}
+
+.action {
+  background: white;
+  position: fixed;
+  padding-bottom: 24px;
+  width: 100%;
+  bottom: 0;
+  padding-top: 16px;
+}
+
+.pi {
+  line-height: inherit !important;
+}

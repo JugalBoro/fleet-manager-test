@@ -1,0 +1,7 @@
+.demo-chart {
+  height: 100% !important;
+}
+
+.demo-chart > div {
+  max-width: 100% !important;
+}

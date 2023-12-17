@@ -1,0 +1,15 @@
+.p-button-text {
+  background: transparent;
+}
+.p-button-text:hover {
+  background: var(--surface-c) !important;
+}
+.p-button-text:active {
+  background: var(--surface-d) !important;
+}
+.p-button-text,
+.p-button-text:hover {
+  border: none;
+  box-shadow: none;
+  color: var(--text-color) !important;
+}

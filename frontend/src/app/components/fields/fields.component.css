@@ -1,0 +1,40 @@
+::ng-deep .infus-fields {
+  display: flex;
+  flex-flow: column nowrap;
+}
+::ng-deep .infus-fields .p-fileupload-buttonbar .p-button {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  border-color: transparent;
+}
+
+::ng-deep .infus-fields p-fileupload .p-fileupload-buttonbar {
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+}
+::ng-deep .infus-fields p-fileupload .p-fileupload-content {
+  padding: 0 !important;
+  border-radius: 6px !important;
+  margin: 0.5rem 0 1rem;
+  border: none;
+}
+::ng-deep .infus-fields p-fileupload.border .p-fileupload-content {
+  border: 1px solid #dee2e6 !important;
+}
+::ng-deep .infus-fields p-fileupload.border .p-fileupload-content ul.list {
+  padding: 0.5rem;
+}
+::ng-deep .infus-fields .custom-float-label {
+  position: absolute;
+  pointer-events: none;
+  top: -0.75rem;
+  font-size: 12px;
+  margin-top: -0.5rem;
+  transition-property: all;
+  transition-timing-function: ease;
+  line-height: 1;
+  left: 0.25rem;
+  color: #6c757d;
+  transition-duration: 0.2s;
+}

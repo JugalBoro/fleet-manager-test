@@ -1,0 +1,512 @@
+[
+  {
+    "$schema": "http://json-schema.org/schema#",
+    "$schemaVersion": "0.0.1",
+    "$id": "industry-fusion/templates/cutter/v0.1/cutter",
+    "title": "Cutter",
+    "description": "Cutter template for IFF",
+    "type": "object",
+    "properties": {
+      "id": { "type": "string", "description": "Unique ID as URN" },
+      "type": { "type": "string", "title": "Type of Asset" },
+      "metadata": {
+        "type": "object",
+        "title": "Metadata",
+        "$ref": "industry-fusion/templates/cutter/v0.1/cutter-metadata.json"
+      },
+      "parameters": {
+        "type": "object",
+        "title": "Parameters",
+        "$ref": "industry-fusion/templates/cutter/v0.1/cutter-parameter.json"
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/schema#",
+    "$schemaVersion": "0.0.1",
+    "$id": "industry-fusion/templates/cutter/v0.1/cutter-metadata",
+    "title": "Security",
+    "description": "Security",
+    "type": "object",
+    "properties": {
+      "identification": {
+        "title": "Identification",
+        "$ref": "industry-fusion/templates/base-objects/v0.1/machine-identification.json"
+      },
+      "visualization": {
+        "title": "Visualization",
+        "$ref": "industry-fusion/templates/base-objects/v0.1/visualization.json"
+      },
+      "measurement": {
+        "title": "Measurement",
+        "$ref": "industry-fusion/templates/base-objects/v0.1/measurement/schema.json"
+      },
+      "operation-conditions": {
+        "title": "Operation Conditions",
+        "$ref": "industry-fusion/templates/base-objects/v0.1/operation-conditions.json"
+      },
+      "security": {
+        "$id": "industry-fusion/templates/base-objects/v0.1/security",
+        "title": "Security",
+        "$ref": "industry-fusion/templates/base-objects/v0.1/security.json"
+      },
+      "maintenance": {
+        "$id": "industry-fusion/templates/base-objects/v0.1/machine-maintenance",
+        "title": "Maintenance",
+        "$ref": "industry-fusion/templates/base-objects/v0.1/machine-maintenance.json"
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/schema#",
+    "$schemaVersion": "0.0.1",
+    "$id": "industry-fusion/templates/base-objects/v0.1/ifric-identification",
+    "title": "IFRIC Identification",
+    "description": "A machine can identify with this object itself.",
+    "type": "object",
+    "properties": {
+      "manufacturer": {
+        "id": "ifric-identification-manufacturer",
+        "type": "string",
+        "title": "Manufacturer name",
+        "placeholder": "",
+        "description": "The manufacturer of the asset"
+      },
+      "ifric-manufacturer-id": {
+        "id": "ifric-identification-ifric-manufacturer-id",
+        "type": "string",
+        "title": "IFRIC-ID manufacturer",
+        "placeholder": "",
+        "description": "The manufacturer id of the asset"
+      },
+      "urn-id": {
+        "id": "ifric-identification-urn-id",
+        "type": "string",
+        "title": "URN-ID",
+        "placeholder": "",
+        "description": "The urn id of the asset"
+      },
+      "ifric-id": {
+        "id": "ifric-identification-ifric-id",
+        "type": "string",
+        "title": "IFRIC-ID asset",
+        "placeholder": "",
+        "description": "The ifric id of the asset"
+      },
+      "asset_name": {
+        "id": "ifric-identification-asset-name",
+        "type": "string",
+        "title": "Asset name",
+        "minLength": 3,
+        "maxLength": 20,
+        "placeholder": "",
+        "description": "name of asset"
+      },
+      "asset_serial_number": {
+        "id": "ifric-identification-asset-serial-number",
+        "type": "number",
+        "title": "Serial number",
+        "placeholder": "",
+        "description": "serial number of asset"
+      },
+      "asset_guid": {
+        "id": "ifric-identification-asset-guid",
+        "type": "string",
+        "title": "Asset GUID",
+        "minLength": 3,
+        "maxLength": 20,
+        "placeholder": "",
+        "description": "asset GUID must come from ICID"
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/schema#",
+    "$schemaVersion": "0.0.1",
+    "$id": "industry-fusion/templates/base-objects/v0.1/machine-identification",
+    "title": "Machine Identification",
+    "description": "A machine can identify with this object itself.",
+    "type": "object",
+    "properties": {
+      "asset-alias": {
+        "id": "machine-identification-asset-alias",
+        "type": "string",
+        "title": "Machine alias",
+        "placeholder": "Choose a name for your asset",
+        "description": "Choose a name for your asset"
+      },
+      "asset-category": {
+        "id": "machine-identification-asset-category",
+        "readonly": true,
+        "type": "string",
+        "title": "Asset category",
+        "placeholder": "Readonly",
+        "description": "The category of the asset"
+      },
+      "asset-name": {
+        "id": "machine-identification-asset-name",
+        "type": "string",
+        "title": "Asset name",
+        "placeholder": "Enter a name",
+        "description": "The name of the asset"
+      },
+      "manufacturer-year": {
+        "id": "machine-identification-manufacturer-year",
+        "type": "string",
+        "title": "Manufacturer year",
+        "description": "The manufacturer year of the asset",
+        "placeholder": "Enter a year"
+      },
+      "manufacturer-name": {
+        "id": "machine-identification-manufacturer-name",
+        "type": "string",
+        "title": "Manufacturer name",
+        "description": "The manufacturer name of the asset",
+        "placeholder": "Enter a name"
+      },
+      "serial-number": {
+        "id": "machine-identification-serial-number",
+        "type": "string",
+        "title": "Serial number",
+        "description": "The serial number of the asset",
+        "placeholder": "Enter a serial number"
+      },
+      "logo": {
+        "id": "machine-identification-logo",
+        "type": "object",
+        "title": "Logo Manufacturer",
+        "contentEncoding": "base64",
+        "contentMediaType": "image/png",
+        "placeholder": "Upload a logo",
+        "description": "The logo of the asset"
+      },
+      "communication-protocol": {
+        "id": "machine-identification-communication-protocol",
+        "type": "string",
+        "title": "Communication protocol",
+        "description": "The communication protocol of the asset",
+        "placeholder": "Select a protocol",
+        "enum": ["opc-ua", "mqtt", "modbus"]
+      },
+      "product-icon": {
+        "id": "machine-identification-product-icon",
+        "type": "string",
+        "title": "Product Icon",
+        "contentEncoding": "base64",
+        "contentMediaType": "image/png",
+        "placeholder": "Upload a product icon",
+        "description": "The production icon of the asset"
+      },
+      "ce-marketing": {
+        "id": "machine-identification-ce-marketing",
+        "type": "string",
+        "title": "CE-Marketing",
+        "description": "The ce-marketing of the asset",
+        "contentEncoding": "base64",
+        "contentMediaType": "application/pdf",
+        "placeholder": "Upload a ce-marketing"
+      },
+      "manual": {
+        "id": "machine-identification-manual",
+        "type": "string",
+        "title": "Manual",
+        "contentEncoding": "base64",
+        "contentMediaType": "application/pdf",
+        "description": "The documentation of the asset",
+        "placeholder": "Upload a manual"
+      }
+    },
+    "required": []
+  },
+  {
+    "$schema": "http://json-schema.org/schema#",
+    "$schemaVersion": "0.0.1",
+    "$id": "industry-fusion/templates/base-objects/v0.1/visualization",
+    "title": "Visualization",
+    "description": "Visualization of an object.",
+    "type": "object",
+    "properties": {
+      "digital-visualization": {
+        "id": "visualization-digital-visualization",
+        "type": "string",
+        "title": "Digital visualization",
+        "contentEncoding": "base64",
+        "contentMediaType": "application/3ds",
+        "description": "The digital visualization of the object.",
+        "placeholder": ""
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/schema#",
+    "$schemaVersion": "0.0.1",
+    "$id": "industry-fusion/templates/base-objects/v0.1/measurement",
+    "title": "Measurement",
+    "description": "Measurement base object, consist of height, width, length, weight",
+    "type": "object",
+    "properties": {
+      "height": {
+        "id": "measurement-height",
+        "type": "number",
+        "title": "Height",
+        "description": "the height in millimeters",
+        "unit": "mm",
+        "placeholder": ""
+      },
+      "width": {
+        "id:": "base-objects-v0.1-measurement-width",
+        "type": "number",
+        "title": "Width",
+        "description": "the width in millimeters",
+        "unit": "mm",
+        "placeholder": ""
+      },
+      "length": {
+        "id": "measurement-length",
+        "type": "number",
+        "title": "Length",
+        "description": "the length in millimeters",
+        "unit": "mm",
+        "placeholder": ""
+      },
+      "weigth": {
+        "id": "measurement-weight",
+        "type": "number",
+        "title": "Weight",
+        "description": "the length in kilograms",
+        "unit": "kg"
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/schema#",
+    "$schemaVersion": "0.0.1",
+    "$id": "industry-fusion/templates/base-objects/v0.1/operation-conditions",
+    "title": "Operation conditions",
+    "description": "IFF base object for operating conditions of a machine",
+    "type": "object",
+    "properties": {
+      "ambient_operating_temperature_min": {
+        "id": "operation-conditions-ambient_operating_temperature_min",
+        "type": "number",
+        "title": "Ambient operating temperature (min.)",
+        "description": "the min temperature in \u00b0C",
+        "unit": "\u00b0C",
+        "placeholder": ""
+      },
+      "ambient_operating_temperature_max": {
+        "id": "operation-conditions-ambient_operating_temperature_max",
+        "type": "number",
+        "title": "Ambient operating temperature (max.)",
+        "description": "the max temperature in \u00b0C",
+        "unit": "\u00b0C",
+        "placeholder": ""
+      },
+      "relative_humidity_min": {
+        "id": "operation-conditions-relative_humidity_min",
+        "type": "number",
+        "title": "Relative humidity (min.)",
+        "description": "the min humidity in percentage",
+        "unit": "%",
+        "placeholder": ""
+      },
+      "relative_humidity_max": {
+        "id": "operation-conditions-relative_humidity_max",
+        "type": "number",
+        "title": "Relative humidity (max.)",
+        "description": "the max humidity in percentage",
+        "unit": "%",
+        "placeholder": ""
+      },
+      "atmospheric_pressure_min": {
+        "id": "operation-conditions-atmospheric_pressure_min",
+        "type": "number",
+        "title": "Atmospheric pressure (min.)",
+        "description": "the min pressure in mbar",
+        "unit": "mbar",
+        "placeholder": ""
+      },
+      "atmospheric_pressure_max": {
+        "id": "operation-conditions-atmospheric_pressure_max",
+        "type": "number",
+        "title": "Atmospheric pressure (max.)",
+        "description": "the max pressure in mbar",
+        "unit": "mbar",
+        "placeholder": ""
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/schema#",
+    "$schemaVersion": "0.0.1",
+    "$id": "industry-fusion/templates/base-objects/v0.1/security",
+    "title": "Security",
+    "description": "Security",
+    "type": "object",
+    "properties": {
+      "protection-class": {
+        "id": "security-protection-class",
+        "type": "string",
+        "title": "Protection class of mechanical components",
+        "description": "Protection class of mechanical components",
+        "enum": ["test", "test2"],
+        "placeholder": "Select a protection class"
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/schema#",
+    "$schemaVersion": "0.0.1",
+    "$id": "industry-fusion/templates/base-objects/v0.1/machine-maintenance",
+    "title": "Maintenance",
+    "description": "Maintenance of a machine",
+    "type": "object",
+    "properties": {
+      "electrical-testing": {
+        "id": "machine-maintenance-electrical-testing",
+        "type": "number",
+        "title": "Electrical Testing",
+        "description": "Pr\u00fcfung des ordnungsgem\u00e4\u00dfen Zustands elektrischer Anlagen und Betriebsmittel (DGUV Vorschrift 3)",
+        "placeholder": "in months"
+      },
+      "maintenance-operating-hours": {
+        "id": "machine-maintenance-maintenance-operating-hours",
+        "type": "number",
+        "title": "Maintenance (operating hours)",
+        "description": "Wartung der Maschine",
+        "placeholder": "in hours"
+      },
+      "maintenance-static-interval": {
+        "id": "machine-maintenance-maintenance-static-interval",
+        "type": "number",
+        "title": "Maintenance (static)",
+        "description": "the length in millimeters",
+        "placeholder": "in months"
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/schema#",
+    "$schemaVersion": "0.0.1",
+    "$id": "industry-fusion/templates/cutter/v0.1/cutter-parameter",
+    "title": "Cutter Parameter",
+    "description": "Cutter Parameter",
+    "type": "object",
+    "properties": {
+      "work-resource-management": {
+        "title": "Work Resource Management",
+        "$ref": "industry-fusion/templates/base-objects/v0.1/work-resource-management.json"
+      },
+      "operation-conditions-runtime": {
+        "title": "Operation Conditions Runtime",
+        "$ref": "industry-fusion/templates/base-objects/v0.1/operation-conditions-runtime.json"
+      },
+      "power": {
+        "title": "Power",
+        "$ref": "industry-fusion/templates/base-objects/v0.1/power.json"
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/schema#",
+    "$schemaVersion": "0.0.1",
+    "$id": "industry-fusion/templates/base-objects/v0.1/work-resource-management",
+    "title": "Work Resource Management",
+    "description": "Work Resource Management",
+    "type": "object",
+    "properties": {
+      "machine-state": {
+        "id": "work-resource-management-machine-state",
+        "type": "string",
+        "title": "Machine State",
+        "description": "Machine State",
+        "enum": ["idle", "running", "stopped", "error"],
+        "placeholder": "Select a machine state"
+      },
+      "operating-mode": {
+        "id": "work-resource-management-operating-mode",
+        "type": "string",
+        "title": "Operating Mode",
+        "description": "Operating Mode",
+        "enum": ["manual", "automatic"],
+        "placeholder": "Select an operating mode"
+      },
+      "operating-hours": {
+        "id": "work-resource-management-operating-hours",
+        "type": "number",
+        "title": "Operating Hours",
+        "description": "Operating Hours",
+        "placeholder": "Enter operating hours"
+      },
+      "runtime": {
+        "id": "work-resource-management-runtime",
+        "type": "number",
+        "title": "Runtime",
+        "description": "Runtime",
+        "placeholder": "Enter runtime"
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/schema#",
+    "$schemaVersion": "0.0.1",
+    "$id": "industry-fusion/templates/base-objects/v0.1/operations-conditions-runtime",
+    "title": "Operations Conditions",
+    "description": "Operations Conditions Runtime",
+    "type": "object",
+    "properties": {
+      "ambient_operating_temperature": {
+        "id": "operations-conditions-runtime-ambient_operating_temperature",
+        "type": "number",
+        "description": "Ambient operating temperature in \u00b0C",
+        "unit": "\u00b0C",
+        "placeholder": "e.g. 20"
+      },
+      "relative_humidity": {
+        "id": "operations-conditions-runtime-relative_humidity",
+        "type": "number",
+        "description": "Relative humidity in %",
+        "unit": "%",
+        "placeholder": "e.g. 50"
+      },
+      "air_pressure": {
+        "id": "operations-conditions-runtime-air_pressure",
+        "type": "number",
+        "description": "Air pressure in hPa",
+        "unit": "mbar",
+        "placeholder": "e.g. 1013"
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/schema#",
+    "$schemaVersion": "0.0.1",
+    "$id": "industry-fusion/templates/base-objects/v0.1/power",
+    "title": "Power",
+    "description": "Power",
+    "type": "object",
+    "properties": {
+      "supply-voltage": {
+        "id": "power-supply-voltage",
+        "type": "number",
+        "description": "Supply voltage",
+        "unitCode": "V",
+        "placeholder": "Supply voltage"
+      },
+      "current-strength": {
+        "id": "power-current-strength",
+        "type": "number",
+        "description": "Current strength",
+        "unitCode": "A",
+        "placeholder": "Current strength"
+      },
+      "power": {
+        "id": "power-power",
+        "type": "number",
+        "description": "Power",
+        "unitCode": "W",
+        "placeholder": "Power"
+      }
+    }
+  }
+]

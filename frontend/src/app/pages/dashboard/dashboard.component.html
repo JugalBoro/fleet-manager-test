@@ -1,0 +1,90 @@
+<ng-container>
+  <div class="dashboard-wrapper">
+    <p-card class="main-card dashboard-availability">
+      <div class="flex flex-col justify-between h-full">
+        <div
+          class="flex flex-row justify-between items-center min-h-[63px] p-4"
+        >
+          <span class="font-medium">Availability</span>
+          <!-- <p-multiSelect
+            [options]="machines"
+            [(ngModel)]="selectedMachines"
+            defaultLabel="All machines"
+            optionLabel="name"
+            display="chip"
+          ></p-multiSelect> -->
+        </div>
+        <div class="border rounded-md flex-grow px-4 mx-4 relative">
+          <!-- <div
+            class="w-4rem h-4rem absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          > -->
+          <infus-chart [chartOption]="groupedStateChartOptions"></infus-chart>
+          <!-- </div> -->
+        </div>
+        <div
+          class="flex flex-row justify-between items-center min-h-[63px] p-4"
+        >
+          <span>Last 5 days</span>
+          <!-- <p-dropdown
+            [options]="timerangesAvailabilityChart"
+            [(ngModel)]="selectedTimerangesAvailabilityChart"
+            optionLabel="name"
+          ></p-dropdown> -->
+          <!-- <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline"
+            >View details</a
+          > -->
+        </div>
+      </div>
+    </p-card>
+    <p-card class="main-card dashboard-efficiency">
+      <div class="flex flex-col justify-between h-full">
+        <div
+          class="flex flex-row justify-between items-center min-h-[63px] p-4"
+        >
+          <span class="font-medium">Energy</span>
+        </div>
+        <div class="border rounded-md flex-grow mx-4 relative">
+          <infus-chart [chartOption]="powerMetricsChartOptions"></infus-chart>
+          <!-- <div
+            class="w-4rem h-4rem absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            *ngIf="!loading.metrics; else loadingMetrics"
+          >
+            <infus-chart
+              *ngIf="!emptyState.chart; else emptyStateChart"
+              [chartOption]="powerMetricsChartOptions"
+            ></infus-chart>
+          </div> -->
+        </div>
+        <div class="flex flex-row justify-between items-center p-4">
+          <span>Last hour</span>
+          <!-- <p-dropdown
+            [options]="timerangesEfficiencyChart"
+            [(ngModel)]="selectedTimerangesEfficiencyChart"
+            optionLabel="name"
+          ></p-dropdown> -->
+          <!-- <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline"
+            >View details</a
+          > -->
+        </div>
+      </div>
+    </p-card>
+    <p-card class="main-card dashboard-table">
+      <ng-template pTemplate="body">
+        <infus-grid
+          [rowData]="rowData | async"
+          [columnDefs]="columnDefs"
+          (notifyParent)="getPanelData($event)"
+        ></infus-grid>
+      </ng-template>
+    </p-card>
+  </div>
+  <ng-template #loadingMetrics>
+    <p-progressSpinner
+      styleClass="w-4rem h-4rem absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+      strokeWidth="8"
+      fill="white"
+      animationDuration=".5s"
+    ></p-progressSpinner>
+  </ng-template>
+  <ng-template #emptyStateChart> No data available </ng-template>
+</ng-container>

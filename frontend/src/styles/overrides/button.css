@@ -1,0 +1,26 @@
+/* ::ng-deep .ag-cell .p-button,
+::ng-deep .ag-cell .p-button:hover {
+  background-color: transparent !important;
+} */
+
+.p-card-header button {
+  background-color: rgba(59, 130, 246, 0.1) !important;
+}
+
+.p-card-header button:hover {
+  background-color: rgba(59, 130, 246, 0.15) !important;
+}
+
+.p-card-header button.p-button-link {
+  background-color: transparent !important;
+  color: #3b82f6 !important;
+}
+
+header .p-button.p-button-rounded.p-button-sm {
+  padding: 0 !important;
+  width: 2rem !important;
+  height: 2rem !important;
+  background-color: #dee2e6;
+  color: var(--text-color);
+  border: none;
+}
